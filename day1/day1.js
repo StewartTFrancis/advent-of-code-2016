@@ -3,7 +3,7 @@ var inpt = 'R1, R3, L2, L5, L2, L1, R3, L4, R2, L2, L4, R2, L1, R1, L2, R3, L1, 
 ((input) => {
 	var directions = input.split(', ');
 	
-	var r90 = 90 * (Math.PI /180); //90 degrees in radians
+	var r90 = 90 * (Math.PI /180); //90 degrees in radians (I realize pi/2 == 90 * (pi / 180)... but this is easier to read)
 	
 	var results = directions.reduce((pos, curr) => {
 		if(curr[0] == 'R')
