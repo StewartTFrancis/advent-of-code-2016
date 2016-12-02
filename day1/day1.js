@@ -3,35 +3,21 @@ var inpt = 'R1, R3, L2, L5, L2, L1, R3, L4, R2, L2, L4, R2, L1, R1, L2, R3, L1, 
 ((input) => {
 	var directions = input.split(', ');
 	
+	var r90 = 90 * (Math.PI /180); //90 degrees in radians
+	
 	var results = directions.reduce((pos, curr) => {
 		if(curr[0] == 'R')
-			pos.angle = (pos.angle + 90) % 360;
+			pos.angle += r90;
 		else
-			pos.angle = (pos.angle == 0) ? 270 : pos.angle - 90;
+			pos.angle -= r90;
 		
 		var dist = parseInt(curr.substr(1, curr.length - 1));
 		
-		switch(pos.angle)
-		{
-			case 0:
-				pos.y += dist;
-			break;
-			
-			case 90:
-				pos.x += dist;
-			break;
-			
-			case 180:
-				pos.y -= dist;
-			break;
-			
-			case 270:
-				pos.x -= dist;
-		}
-	
+		pos.y += dist * Math.sin(pos.angle);
+		pos.x += dist * Math.cos(pos.angle);	
 	return pos;
 		
-	}, {'angle': 0, 'x': 0, 'y': 0});
+	}, {'angle': r90, 'x': 0, 'y': 0});
 	
 	console.log(Math.abs(results.x) + Math.abs(results.y));
 })(inpt);
