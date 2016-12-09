@@ -10,8 +10,7 @@ var screen = (input, settings) => {
 	
 	var drawRect = (width, height) => {
 		for(var y = 0; y < Math.min(height, settings.height); y++)
-			for(var x = 0; x < Math.min(width, settings.width); x++)
-				display[y][x] = true;
+			display[y].fill(true, 0, width);
 	};
 	
 	var shiftRow = (row, dist) => {
